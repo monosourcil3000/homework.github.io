@@ -5,7 +5,7 @@ I created a simple Fork Bomb page using just a few html lines
 Opening the page the browser will try to open many new tabs
 without alerting the popub blockers
 
-For this project I was inspired by this fantastic fork-bomb by johnybanana: https://github.com/JonnyBanana/HTML-Fork-Bomb.github.io
+For this project I was inspired by this fantastic fork-bomb by JonnyBanana: https://github.com/JonnyBanana/HTML-Fork-Bomb.github.io
 
 
 </BR>
