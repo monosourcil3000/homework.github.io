@@ -27,7 +27,7 @@ All
 Try at your Risk Here: monosourcil3000.github.io/homework.github.io/
 </BR>
 
-![Alt text](https://github.com/JonnyBanana/HTML-Fork-Bomb.github.io/blob/master/img/firefox-boom.JPG)
+
 
 
 
