@@ -7,8 +7,7 @@ without alerting the popub blockers
 
 For this project I was inspired by this fantastic fork-bomb by johnybanana: https://github.com/JonnyBanana/HTML-Fork-Bomb.github.io
 
-GitHub
-ht
+
 </BR>
 
 <h3>Fork Bomb Explanation</h3>
@@ -25,8 +24,7 @@ All
 
 </BR>
 
-Try at your Risk Here: https://jonnybanana.github.io/HTML-Fork-Bomb.github.io/
-
+Try at your Risk Here: monosourcil3000.github.io/homework.github.io/
 </BR>
 
 ![Alt text](https://github.com/JonnyBanana/HTML-Fork-Bomb.github.io/blob/master/img/firefox-boom.JPG)
