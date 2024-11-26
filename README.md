@@ -20,7 +20,8 @@ https://it.wikipedia.org/wiki/Fork_bomb
 
 <h3> Browser Compatibility </h3>
 
-All
+chrome: yes
+idk if it works on other browsers
 
 </BR>
 
