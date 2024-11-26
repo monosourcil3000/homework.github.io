@@ -21,6 +21,7 @@ https://it.wikipedia.org/wiki/Fork_bomb
 <h3> Browser Compatibility </h3>
 
 chrome: yes
+-
 idk if it works on other browsers
 
 </BR>
