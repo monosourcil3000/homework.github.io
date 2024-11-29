@@ -1,5 +1,7 @@
 # HTML-Fork-Bomb.github.io
 
+Share your improvements and i'll add them
+
 I created a simple Fork Bomb page using just a few html lines
 
 Opening the page the browser will try to open many new tabs
