@@ -36,7 +36,18 @@
 
                 // Function to create a window with recursive opening functionality
                 function openRecursiveWindow() {
-                    var newWindow = window.open('', '_blank', 'width=400,height=300');
+                    var width = 400;
+                    var height = 300;
+
+                    // Randomize the position
+                    var left = Math.floor(Math.random() * (window.screen.width - width));
+                    var top = Math.floor(Math.random() * (window.screen.height - height));
+
+                    var newWindow = window.open(
+                        '',
+                        '_blank',
+                        `width=${width},height=${height},left=${left},top=${top}`
+                    );
                     if (!newWindow) {
                         alert('Pop-ups are blocked! Allow pop-ups to see the effect.');
                         return;
@@ -49,8 +60,18 @@
                     script.textContent = `
                         (function() {
                             function openNewWindows() {
+                                var width = 400;
+                                var height = 300;
+
                                 for (var i = 0; i < 3; i++) {
-                                    var childWindow = window.open('', '_blank', 'width=400,height=300');
+                                    var left = Math.floor(Math.random() * (window.screen.width - width));
+                                    var top = Math.floor(Math.random() * (window.screen.height - height));
+
+                                    var childWindow = window.open(
+                                        '',
+                                        '_blank',
+                                        \`width=\${width},height=\${height},left=\${left},top=\${top}\`
+                                    );
                                     if (childWindow) {
                                         childWindow.document.title = 'Recursive Window';
                                         childWindow.document.body.innerHTML = '<h1>New Recursive Window</h1>';
