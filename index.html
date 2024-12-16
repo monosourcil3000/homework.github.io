@@ -1,37 +1,80 @@
-<html>
-    <script type="text/javascript">
-        
-       var w = window.open();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursive Infinite Windows</title>
+    <style>
+        /* Make the body take up the full viewport height and remove margins */
+        body, html {
+            margin: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
 
-        w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
- w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
+        /* Image style */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            // Display the image on the page
+            var image = document.createElement('img');
+            image.src = 'https://i.kym-cdn.com/entries/icons/facebook/000/038/265/rmf.jpg';
+            image.alt = 'Embedded Image';
+            document.body.appendChild(image);
 
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-         w.document.write(document.documentElement.outerHTML||document.documentElement.innerHTML); 
-   
-   
+            // After 1 second, open the initial window
+            setTimeout(function () {
+                // Remove the image
+                image.style.display = 'none';
 
-location.reload()
-  
-           
-        
-</script>
+                // Function to create a window with recursive opening functionality
+                function openRecursiveWindow() {
+                    var newWindow = window.open('', '_blank', 'width=400,height=300');
+                    if (!newWindow) {
+                        alert('Pop-ups are blocked! Allow pop-ups to see the effect.');
+                        return;
+                    }
+
+                    newWindow.document.title = 'Recursive Window';
+                    newWindow.document.body.innerHTML = '<h1>New Recursive Window</h1>';
+                    var script = newWindow.document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.textContent = `
+                        (function() {
+                            function openNewWindows() {
+                                for (var i = 0; i < 3; i++) {
+                                    var childWindow = window.open('', '_blank', 'width=400,height=300');
+                                    if (childWindow) {
+                                        childWindow.document.title = 'Recursive Window';
+                                        childWindow.document.body.innerHTML = '<h1>New Recursive Window</h1>';
+                                        var childScript = childWindow.document.createElement('script');
+                                        childScript.type = 'text/javascript';
+                                        childScript.textContent = '(' + openNewWindows.toString() + ')();';
+                                        childWindow.document.body.appendChild(childScript);
+                                    }
+                                }
+                            }
+                            // Trigger the creation of new windows
+                            setTimeout(openNewWindows, 1000);
+                        })();
+                    `;
+                    newWindow.document.body.appendChild(script);
+                }
+
+                // Open the first recursive window
+                openRecursiveWindow();
+            }, 1000); // Wait for 1 second (1000 ms)
+        };
+    </script>
+</head>
+<body>
+    <!-- Initially empty, image is dynamically added by JS -->
+</body>
 </html>
