@@ -1,2 +1,0 @@
-Only work with IE, Mozilla and Probably Edge
-Don't work with Chrome and Opera
