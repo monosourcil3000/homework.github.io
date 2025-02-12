@@ -1,106 +1,55 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accept his request...</title></title>
-<style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    background-color: black; /* Set the background color to black */
-    height: 100%;
-    overflow: hidden;
-  }
-
-  #myVideo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Maintain aspect ratio while covering entire container */
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursive Windows</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-
-<video id="myVideo" controls autoplay>
-  <!-- Provide the path to the video file on your desktop -->
-  <source src="https://monosourcil3000.github.io/homework.github.io/video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+    <video id="myVideo" width="640" height="360" autoplay>
+        <source src="https://monosourcil3000.github.io/homework.github.io/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
     <script>
-       var video = document.getElementById("myVideo");
-     $(document).ready(function(){
-    $('video').on('ended',function(){
- 
-                    var width = 400;
-                    var height = 300;
+        // Function that will be executed when the video ends
+        function openRecursiveWindows() {
+            // Random position on screen
+            const randomX = Math.floor(Math.random() * (window.innerWidth - 300));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - 200));
 
-                    // Randomize the position
-                    var left = Math.floor(Math.random() * (window.screen.width - width));
-                    var top = Math.floor(Math.random() * (window.screen.height - height));
+            // Open a new window at a random location
+            const newWindow = window.open('', '', `width=300,height=200,left=${randomX},top=${randomY}`);
+            
+            // Recursive function to open new windows automatically
+            function openNewWindow() {
+                // Delay a little before opening a new window to make it more natural
+                setTimeout(() => {
+                    const randomX = Math.floor(Math.random() * (window.innerWidth - 300));
+                    const randomY = Math.floor(Math.random() * (window.innerHeight - 200));
+                    window.open('', '', `width=300,height=200,left=${randomX},top=${randomY}`);
+                    
+                    // Call openNewWindow recursively in the new window
+                    openNewWindow();
+                }, Math.random() * 1000 + 500);  // Random delay between 500ms to 1500ms
+            }
 
-                    var newWindow = window.open(
-                        '',
-                        '_blank',
-                        `width=${width},height=${height},left=${left},top=${top}`
-                    );
-                    if (!newWindow) {
-                        alert('Pop-ups are blocked! Allow pop-ups to see the effect.');
-                        return;
-                    }
+            // Start the recursive opening of windows
+            openNewWindow();
+        }
 
-                    newWindow.document.title = 'Recursive Window';
-                    newWindow.document.body.innerHTML = '<h1>New Recursive Window</h1>';
-                    var script = newWindow.document.createElement('script');
-                    script.type = 'text/javascript';
-                    script.textContent = `
-                        
-                        (function() {
-                            document.onload = function(){ {
-                                var width = 400;
-                                var height = 300;
+        // Get the video element
+        const video = document.getElementById('myVideo');
 
-                                for (var i = 0; i < 3; i++) {
-                                    var left = Math.floor(Math.random() * (window.screen.width - width));
-                                    var top = Math.floor(Math.random() * (window.screen.height - height));
+        // Add event listener for when the video ends
+        video.addEventListener('ended', openRecursiveWindows);
 
-                                    var childWindow = window.open(
-                                        '',
-                                        '_blank',
-                                        \`width=\${width},height=\${height},left=\${left},top=\${top}\`
-                                    );
-                                    if (childWindow) {
-                                        childWindow.document.title = 'Recursive Window';
-                                        childWindow.document.body.innerHTML = '<h1>New Recursive Window</h1>';
-                                        var childScript = childWindow.document.createElement('script');
-                                        childScript.type = 'text/javascript';
-                                        childScript.textContent = '(' + openNewWindows.toString() + ')();';
-                                        childWindow.document.body.appendChild(childScript);
-                                    }
-                                }
-                            }
-                            // Trigger the creation of new windows
-                            setTimeout(openNewWindows, 1000);
-                             openRecursiveWindow();
-                        })();
-                    `;
-                    newWindow.document.body.appendChild(script);
-                }
-
-                // Open the first recursive window
-                openRecursiveWindow();
-                openRecursiveWindow();
-                openRecursiveWindow();
-                openRecursiveWindow();
-                openRecursiveWindow();
-            }, 1000);
-      };
     </script>
-      </body>
+</body>
 </html>
-  
