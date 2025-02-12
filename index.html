@@ -12,7 +12,7 @@
                     let newWindow = window.open(window.location.origin + window.location.pathname + '?child=true', '_blank', 'width=600,height=400,left=' + (index * 50) + ',top=' + (index * 50) + ',noopener,noreferrer');
                     if (newWindow) {
                         newWindow.focus();
-                        newWindow.onload = () => openMultipleWindows(count, delay);
+                        newWindow.onload = () => newWindow.postMessage('spawn', '*');
                     }
                     index++;
                     setTimeout(openWindow, delay);
@@ -28,22 +28,28 @@
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('child')) {
+                document.body.innerHTML = '<h1>Spawning new windows...</h1>';
                 setTimeout(() => openMultipleWindows(), 500);
+            } else {
+                document.getElementById('videoElement').onended = onVideoEnd;
             }
         };
     </script>
 </head>
 <body>
-    <h1>Waiting for Video to Finish</h1>
-    <video id="videoElement" width="640" height="360" controls>
-        <source src="https://monosourcil3000.github.io/homework.github.io/video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <p>Once the video finishes playing, new windows will open.</p>
+    <h1 id="mainTitle">Waiting for Video to Finish</h1>
+    <div id="videoContainer">
+        <video id="videoElement" width="640" height="360" controls>
+            <source src="https://monosourcil3000.github.io/homework.github.io/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p>Once the video finishes playing, new windows will open.</p>
+    </div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('child')) {
-            document.body.innerHTML = '<h1>Spawning new windows...</h1>';
+            document.getElementById('mainTitle').textContent = 'Spawning new windows...';
+            document.getElementById('videoContainer').remove();
             setTimeout(() => openMultipleWindows(), 500);
         } else {
             document.getElementById('videoElement').onended = onVideoEnd;
