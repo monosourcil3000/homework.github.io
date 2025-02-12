@@ -34,7 +34,8 @@
 
     <script>
        var video = document.getElementById("myVideo");
-     video.onended = function() {
+     $(document).ready(function(){
+    $('video').on('ended',function(){
  
                     var width = 400;
                     var height = 300;
