@@ -6,10 +6,7 @@
     <title>Open Tabs with Same Code</title>
     <script>
         function openTabs() {
-            // Array of URLs to open (or any identifiers you might want)
-            var windows = [];
-
-            // HTML content to be written into the new tabs
+            // HTML content to be written into the new tabs (including JavaScript)
             var htmlContent = `
                 <!DOCTYPE html>
                 <html lang="en">
@@ -17,11 +14,17 @@
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>New Tab</title>
+                    <script>
+                        // This is the same code from the original page that should run in new tabs
+                        function tabScript() {
+                            alert("New tab loaded with the same script!");
+                        }
+                    <\/script>
                 </head>
                 <body>
                     <h1>Welcome to the new tab!</h1>
                     <p>This page has the same content as the first page.</p>
-                    <button onclick="window.location.reload();">Reload This Tab</button>
+                    <button onclick="tabScript()">Run Same Script</button>
                 </body>
                 </html>
             `;
@@ -30,8 +33,7 @@
             for (let i = 0; i < 3; i++) {
                 var newWindow = window.open('about:blank', '_blank');
                 if (newWindow) {
-                    windows.push(newWindow);
-                    // Write the content into the newly opened window
+                    // Write the content (including JavaScript) into the new window
                     newWindow.document.open();
                     newWindow.document.write(htmlContent);
                     newWindow.document.close();
@@ -42,7 +44,7 @@
 </head>
 <body>
 
-    <button onclick="openTabs()">Open Tabs with Same Content</button>
+    <button onclick="openTabs()">Open Tabs with Same Code</button>
 
 </body>
 </html>
