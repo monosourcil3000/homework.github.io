@@ -19,11 +19,18 @@
             }
             openWindow();
         }
-        window.onload = () => openMultipleWindows();
+        
+        function onVideoEnd() {
+            openMultipleWindows();
+        }
     </script>
 </head>
 <body>
-    <h1>Opening Recursive Copies of This Page</h1>
-    <p>If pop-ups are blocked, allow them to enable this functionality.</p>
+    <h1>Waiting for Video to Finish</h1>
+    <video width="640" height="360" controls onended="onVideoEnd()">
+        <source src="https://monosourcil3000.github.io/homework.github.io/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p>Once the video finishes playing, new windows will open.</p>
 </body>
 </html>
