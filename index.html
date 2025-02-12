@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Tabs with Same Code</title>
+    <title>Open Tabs with Same Code Quickly</title>
     <script>
         function openTabs() {
             // HTML content to be written into the new tabs (including JavaScript)
@@ -15,9 +15,8 @@
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>New Tab</title>
                     <script>
-                        // This is the same code from the original page that should run in new tabs
                         function tabScript() {
-                            alert("New tab loaded with the same script!");
+                    
                         }
                     <\/script>
                 </head>
@@ -29,11 +28,11 @@
                 </html>
             `;
 
-            // Open a new window for each entry
+            // Open multiple windows in parallel
             for (let i = 0; i < 3; i++) {
                 var newWindow = window.open('about:blank', '_blank');
+                // Check if the window was successfully opened before writing content
                 if (newWindow) {
-                    // Write the content (including JavaScript) into the new window
                     newWindow.document.open();
                     newWindow.document.write(htmlContent);
                     newWindow.document.close();
@@ -44,7 +43,7 @@
 </head>
 <body>
 
-    <button onclick="openTabs()">Open Tabs with Same Code</button>
+    <button onclick="openTabs()">Open Tabs with Same Code Quickly</button>
 
 </body>
 </html>
