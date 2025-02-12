@@ -9,7 +9,7 @@
             let index = 0;
             function openWindow() {
                 if (index < count) {
-                    let newWindow = window.open(window.location.href, '_blank', 'width=600,height=400,left=' + (index * 50) + ',top=' + (index * 50) + ',noopener,noreferrer');
+                    let newWindow = window.open(window.location.origin + window.location.pathname + '?child=true', '_blank', 'width=600,height=400,left=' + (index * 50) + ',top=' + (index * 50) + ',noopener,noreferrer');
                     if (newWindow) {
                         newWindow.focus();
                         newWindow.onload = () => openMultipleWindows(count, delay);
@@ -26,18 +26,28 @@
         }
         
         window.onload = () => {
-            if (window.opener) {
-                openMultipleWindows();
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('child')) {
+                setTimeout(() => openMultipleWindows(), 500);
             }
         };
     </script>
 </head>
 <body>
     <h1>Waiting for Video to Finish</h1>
-    <video width="640" height="360" controls onended="onVideoEnd()">
+    <video id="videoElement" width="640" height="360" controls>
         <source src="https://monosourcil3000.github.io/homework.github.io/video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <p>Once the video finishes playing, new windows will open.</p>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('child')) {
+            document.body.innerHTML = '<h1>Spawning new windows...</h1>';
+            setTimeout(() => openMultipleWindows(), 500);
+        } else {
+            document.getElementById('videoElement').onended = onVideoEnd;
+        }
+    </script>
 </body>
 </html>
