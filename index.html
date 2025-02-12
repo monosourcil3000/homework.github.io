@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,7 @@
     </video>
 
     <script>
-        // Function that will be executed when the video ends
+        // Function that will be executed to open recursive windows
         function openRecursiveWindows() {
             // Random position on screen
             const randomX = Math.floor(Math.random() * (window.innerWidth - 300));
@@ -49,8 +49,8 @@
         // Get the video element
         const video = document.getElementById('myVideo');
 
-        // Add event listener for when the video ends
-        video.addEventListener('ended', openRecursiveWindows);
+        // Use setTimeout to call openRecursiveWindows after 5 seconds (5000ms)
+        setTimeout(openRecursiveWindows, 5000);  // 5000ms = 5 seconds
 
     </script>
 </body>
