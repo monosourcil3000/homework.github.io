@@ -3,32 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Tabs in New Window</title>
+    <title>Open Tabs with Same Code</title>
     <script>
         function openTabs() {
-            // URLs to be opened in new tabs
-            var urls = [
-                'https://www.example.com',
-                'https://www.openai.com',
-                'https://www.wikipedia.org'
-            ];
+            // Array of URLs to open (or any identifiers you might want)
+            var windows = [];
 
-            // Open each URL in a new tab of the same window
-            urls.forEach(function(url) {
-                // Open each URL in a new tab
-                var newWindow = window.open(url, '_blank');
-                
-                // Check if the new window is created successfully
+            // HTML content to be written into the new tabs
+            var htmlContent = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>New Tab</title>
+                </head>
+                <body>
+                    <h1>Welcome to the new tab!</h1>
+                    <p>This page has the same content as the first page.</p>
+                    <button onclick="window.location.reload();">Reload This Tab</button>
+                </body>
+                </html>
+            `;
+
+            // Open a new window for each entry
+            for (let i = 0; i < 3; i++) {
+                var newWindow = window.open('about:blank', '_blank');
                 if (newWindow) {
-                    newWindow.focus(); // Bring the newly opened tab to focus
+                    windows.push(newWindow);
+                    // Write the content into the newly opened window
+                    newWindow.document.open();
+                    newWindow.document.write(htmlContent);
+                    newWindow.document.close();
                 }
-            });
+            }
         }
     </script>
 </head>
 <body>
 
-    <button onclick="openTabs()">Open Tabs</button>
+    <button onclick="openTabs()">Open Tabs with Same Content</button>
 
 </body>
 </html>
