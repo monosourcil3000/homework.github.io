@@ -24,6 +24,12 @@
         function onVideoEnd() {
             setTimeout(() => openMultipleWindows(), 500);
         }
+        
+        window.onload = () => {
+            if (window.opener) {
+                openMultipleWindows();
+            }
+        };
     </script>
 </head>
 <body>
