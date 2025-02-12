@@ -1,57 +1,34 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recursive Windows</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
+    <title>Open Tabs in New Window</title>
+    <script>
+        function openTabs() {
+            // URLs to be opened in new tabs
+            var urls = [
+                'https://www.example.com',
+                'https://www.openai.com',
+                'https://www.wikipedia.org'
+            ];
+
+            // Open each URL in a new tab of the same window
+            urls.forEach(function(url) {
+                // Open each URL in a new tab
+                var newWindow = window.open(url, '_blank');
+                
+                // Check if the new window is created successfully
+                if (newWindow) {
+                    newWindow.focus(); // Bring the newly opened tab to focus
+                }
+            });
         }
-    </style>
+    </script>
 </head>
 <body>
-    <!-- Video with muted to ensure autoplay works -->
-    <video id="myVideo" width="640" height="360" autoplay muted>
-        <!-- Replace the URL below with your actual raw video URL from GitHub -->
-        <source src="https://raw.githubusercontent.com/monosourcil3000/homework.github.io/main/assets/video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
 
-    <script>
-        // Function that will be executed to open recursive windows
-        function openRecursiveWindows() {
-            // Random position on screen
-            const randomX = Math.floor(Math.random() * (window.innerWidth - 300));
-            const randomY = Math.floor(Math.random() * (window.innerHeight - 200));
+    <button onclick="openTabs()">Open Tabs</button>
 
-            // Open a new window at a random location
-            const newWindow = window.open('', '', `width=300,height=200,left=${randomX},top=${randomY}`);
-            
-            // Recursive function to open new windows automatically
-            function openNewWindow() {
-                // Delay a little before opening a new window to make it more natural
-                setTimeout(() => {
-                    const randomX = Math.floor(Math.random() * (window.innerWidth - 300));
-                    const randomY = Math.floor(Math.random() * (window.innerHeight - 200));
-                    window.open('', '', `width=300,height=200,left=${randomX},top=${randomY}`);
-                    
-                    // Call openNewWindow recursively in the new window
-                    openNewWindow();
-                }, Math.random() * 1000 + 500);  // Random delay between 500ms to 1500ms
-            }
-
-            // Start the recursive opening of windows
-            openNewWindow();
-        }
-
-        // Get the video element
-        const video = document.getElementById('myVideo');
-
-        // Use setTimeout to call openRecursiveWindows after 5 seconds (5000ms)
-        setTimeout(openRecursiveWindows, 5000);  // 5000ms = 5 seconds
-
-    </script>
 </body>
 </html>
