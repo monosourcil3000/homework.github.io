@@ -8,7 +8,7 @@
         function openMultipleWindows(count = 5, delay = 500) {
             let index = 0;
             function openWindow() {
-                if (index < count) {
+                if (index < 2) {
                     let newWindow = window.open('about:blank', '_blank', 'width=600,height=400,left=' + (index * 50) + ',top=' + (index * 50) + ',noopener,noreferrer');
                     if (newWindow) {
                         newWindow.document.write('<!DOCTYPE html><html lang="en"><head><title>Forkbomb</title></head><body><h1>Spawning new windows...</h1><script>setTimeout(() => {' +
